@@ -8,13 +8,30 @@ import { MenuItem } from 'primeng/api';
 })
 export class MenuComponent implements OnInit {
   itens: MenuItem[];
+  paginaSelecionada: string;
   constructor() {}
 
   ngOnInit(): void {
     this.itens = [
-      { label: 'New', icon: 'pi pi-fw pi-plus' },
-      { label: 'Open', icon: 'pi pi-fw pi-download' },
-      { label: 'Undo', icon: 'pi pi-fw pi-refresh' },
+      {
+        label: 'Home',
+      },
+      {
+        label: 'Usuários',
+        routerLink: 'usuarios',
+      },
+      {
+        label: 'Contas',
+      },
+      {
+        label: 'Partidas',
+      },
+      {
+        label: 'Saques/Depósitos',
+      },
+      {
+        label: 'Gráficos',
+      },
     ];
   }
 }

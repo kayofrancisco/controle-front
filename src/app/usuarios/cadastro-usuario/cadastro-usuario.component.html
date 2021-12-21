@@ -1,0 +1,13 @@
+<form [formGroup]="formCadastro" (ngSubmit)="salvar()">
+
+
+      <span class="p-float-label">
+        <input id="float-input-invalid" type="text" pInputText class="ng-invalid ng-dirty">
+        <label for="float-input-invalid">Username</label>
+    </span>
+
+  <div class="container-botao">
+    <p-button type="submit" label="Confirmar"></p-button>
+    <p-button id="botao-direita" label="Novo Cadastro" (onClick)="limparCampos()"></p-button>
+  </div>
+</form>

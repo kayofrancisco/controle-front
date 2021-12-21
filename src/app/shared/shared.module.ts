@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './components/menu/menu.component';
-import { MenuModule } from 'primeng/menu';
+import { MenubarModule } from 'primeng/menubar';
+import { PanelModule } from 'primeng/panel';
+import { FormularioComponent } from './components/formulario/formulario.component';
 
 @NgModule({
-  declarations: [MenuComponent],
-  imports: [CommonModule, MenuModule],
-  exports: [MenuComponent],
+  declarations: [MenuComponent, FormularioComponent],
+  imports: [CommonModule, MenubarModule, PanelModule],
+  exports: [MenuComponent, FormularioComponent],
 })
 export class SharedModule {}
