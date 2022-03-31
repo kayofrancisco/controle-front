@@ -22,6 +22,7 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Contas',
+        routerLink: 'contas',
       },
       {
         label: 'Partidas',
@@ -31,6 +32,10 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Gráficos',
+      },
+      {
+        label: 'Calculos',
+        routerLink: 'calculos',
       },
     ];
   }
