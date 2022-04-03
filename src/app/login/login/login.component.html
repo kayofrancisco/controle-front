@@ -1,0 +1,40 @@
+<div class="container-form">
+  <form class="card" style="max-width: 300px; margin-top: 30px;" [formGroup]="form" (ngSubmit)="realizarLogin()">
+    <div class="field">
+        <label>Email: </label>
+        <input pInputText placeholder="Digite o email" type="text" class="inputfield" style="width: 100%;" formControlName="email"
+          [class.valid]="form.get('email')?.valid &&
+          (form.get('email')?.dirty || form.get('email')?.touched)"
+          [class.invalid]="form.get('email')?.invalid &&
+          (form.get('email')?.dirty || form.get('email')?.touched)">
+          <div style="margin-top: 5px;"
+            *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)">
+            <small *ngIf="form.controls['email'].errors?.['required']" class="p-error">
+                <p>- Informe o email</p>
+            </small>
+            <small *ngIf="form.controls['email'].errors?.['email']" class="p-error">
+                <p>- Email inválido</p>
+            </small>
+          </div>
+      </div>
+    <div class="field">
+        <label >Senha: </label>
+        <input pInputText placeholder="Digite a senha" id="lastname1" type="password" class="inputfield" style="width: 100%;"
+        formControlName="senha"
+        [class.valid]="form.get('senha')?.valid &&
+        (form.get('senha')?.dirty || form.get('senha')?.touched)"
+        [class.invalid]="form.get('senha')?.invalid &&
+        (form.get('senha')?.dirty || form.get('senha')?.touched)">
+        <div style="margin-top: 5px;"
+            *ngIf="form.controls['senha'].invalid && (form.controls['senha'].dirty || form.controls['senha'].touched)">
+            <small *ngIf="form.controls['senha'].errors?.['required']" class="p-error">
+                <p>- Informe a senha</p>
+            </small>
+            <small *ngIf="form.controls['senha'].errors?.['minlength']" class="p-error">
+              <p>- Senha muito curta</p>
+          </small>
+          </div>
+    </div>
+      <p-button label="Login" type="submit" [disabled]="!form.valid"></p-button>
+  </form>
+</div>
