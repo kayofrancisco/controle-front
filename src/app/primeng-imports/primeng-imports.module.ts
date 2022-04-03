@@ -6,6 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
+import { TabViewModule } from 'primeng/tabview';
 
 @NgModule({
   declarations: [],
@@ -16,6 +17,7 @@ import { InputTextModule } from 'primeng/inputtext';
     ButtonModule,
     DropdownModule,
     InputSwitchModule,
+    TabViewModule,
   ],
   exports: [
     FieldsetModule,
@@ -23,6 +25,7 @@ import { InputTextModule } from 'primeng/inputtext';
     ButtonModule,
     DropdownModule,
     InputSwitchModule,
+    TabViewModule,
     InputTextModule,
   ],
 })

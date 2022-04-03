@@ -26,6 +26,7 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Partidas',
+        routerLink: 'partidas',
       },
       {
         label: 'Saques/Depósitos',
