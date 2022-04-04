@@ -1,12 +1,148 @@
+<p-blockUI [blocked]="travarTela || requisicoesEmAndamento > 0">
+  <i class="pi pi-spin pi-spinner" style="font-size: 60px"></i>
+</p-blockUI>
 <div class="grid" style="padding: 10px;">
   <div class="col-12">
     <p-fieldset legend="Partidas" >
       <p-tabView>
         <p-tabPanel header="Listar Partidas">
+          <p-table [value]="partidasFiltradas" [paginator]="true" [rows]="10" [autoLayout]="true">
+            <ng-template pTemplate="caption">
+              <div class="grid card">
+                <div class="field col-4">
+                    <label >Filtrar por Conta</label>
+                    <p-dropdown [style]="{'width': '100%'}"  [options]="contasFiltro"
+                      (onChange)="selecionouContaFiltro($event)"
+                      optionLabel="nick" >
+                    </p-dropdown>
+                </div>
+                <div class="field col-4">
+                    <label >Filtrar por Ganho/Perda</label>
+                    <p-dropdown [style]="{'width': '100%'}"  [options]="ganhoPerdaFiltro"
+                      (onChange)="selecionouGanhaPerdaFiltro($event)">
+                    </p-dropdown>
+                </div>
+                <div class="field col-4">
+                    <label >Filtrar por Limite</label>
+                    <p-dropdown [style]="{'width': '100%'}"  [options]="limiteFiltro"
+                      (onChange)="selecionouLimiteFiltro($event)"
+                      optionLabel="blind" >
+                    </p-dropdown>
+                </div>
+            </div>
+          </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th class="coluna-media">Conta</th>
+                <th class="coluna-media">Quantidade Mãos</th>
+                <th class="coluna-media">Quantidade Mesas</th>
+                <th class="coluna-pequena">Limite</th>
+                <th class="coluna-pequena-media">Ganho/Perda</th>
+                <th class="coluna-media">Data</th>
+                <th class="coluna-pequena">Excluir</th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-partida>
+            <tr>
+                <td class="coluna-media">{{partida.conta.nick}}</td>
+                <td class="coluna-media">{{partida.quantidadeMaos | number}}</td>
+                <td class="coluna-media">{{partida.quantidadeMesas}}</td>
+                <td class="coluna-pequena">{{partida.limite.smallBlind}}/{{partida.limite.bigBlind}}</td>
+                <td class="coluna-pequena-media" [ngClass]="{'vermelho': partida.valor < 0, 'verde': partida.valor >=0 }" >{{partida.valor | currency: 'BRL'}}</td>
+                <td class="coluna-media">{{partida.data}}</td>
+                <td class="coluna-pequena">
+                  <p-button (onClick)="excluir(partida)" icon="pi pi-trash" label="Excluir"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+          </p-table>
         </p-tabPanel>
         <p-tabPanel header="Cadastrar Partida">
+          <form [formGroup]="form" (ngSubmit)="salvar()">
+            <div class="field grid">
+              <label style="width:100px">Conta:</label>
+              <div class="col">
+                <p-dropdown class="inputfield" [options]="contas"
+                  [style]="{'width': '300px'}"
+                  formControlName="conta" optionLabel="nick"
+                  placeholder="Escolha a conta">
+                </p-dropdown>
+              </div>
+            </div>
+            <div class="field grid">
+              <label style="width:100px">Limite:</label>
+              <div class="col">
+                <p-dropdown class="inputfield" [options]="limites"
+                  [style]="{'width': '300px'}"
+                  formControlName="limite" optionLabel="bigBlind"
+                  placeholder="Escolha um limite">
+                </p-dropdown>
+              </div>
+            </div>
+            <div class="field grid">
+              <label style="width:100px">Valor:</label>
+              <div class="col">
+                <p-inputNumber
+                  placeholder="Valor ganho/perda"
+                  [style]="{'width': '300px'}"
+                  [showButtons]="true"
+                  mode="currency"
+                  currency="BRL"
+                  locale="pt-BR"
+                  formControlName="valor"
+                >
+                </p-inputNumber>
+              </div>
+            </div>
+            <div class="field grid">
+              <label style="width:100px">Quantidade Mãos:</label>
+              <div class="col">
+                <p-inputNumber
+                  placeholder="Quantidade de mãos"
+                  [style]="{'width': '300px'}"
+                  [showButtons]="true"
+                  [step]="1"
+                  formControlName="quantidadeMaos"
+                  [min]="1"
+                >
+                </p-inputNumber>
+              </div>
+            </div>
+            <div class="field grid">
+              <label style="width:100px">Quantidade Mesas:</label>
+              <div class="col">
+                <p-inputNumber
+                  placeholder="Quantidade de mesas"
+                  [style]="{'width': '300px'}"
+                  [showButtons]="true"
+                  [step]="1"
+                  formControlName="quantidadeMesas"
+                  [min]="1"
+                >
+                </p-inputNumber>
+              </div>
+            </div>
+            <div class="field grid">
+              <label style="width:100px">Data:</label>
+              <div class="col">
+                <p-calendar
+                  placeholder="Escolha a data"
+                  [style]="{'width': '300px'}"
+                  formControlName="dataJs"
+                  dateFormat="dd/MM/yy"
+                  [maxDate]="dataHoje"
+                  [showTime]="true"
+                >
+                </p-calendar>
+              </div>
+            </div>
+            <div class="field grid">
+              <p-button type="submit" label="salvar"></p-button>
+            </div>
+          </form>
         </p-tabPanel>
       </p-tabView>
     </p-fieldset>
   </div>
 </div>
+

@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { TokenInterceptor } from './auth/token.interceptor';
+import { PrimengImportsModule } from './primeng-imports/primeng-imports.module';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,8 +17,10 @@ import { TokenInterceptor } from './auth/token.interceptor';
     HttpClientModule,
     SharedModule,
     BrowserAnimationsModule,
+    PrimengImportsModule,
   ],
   providers: [
+    MessageService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
