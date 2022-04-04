@@ -33,6 +33,7 @@ export class MenuComponent implements OnInit {
       },
       {
         label: 'Gráficos',
+        routerLink: 'graficos',
       },
       {
         label: 'Calculos',

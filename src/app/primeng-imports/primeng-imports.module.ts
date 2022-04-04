@@ -12,6 +12,7 @@ import { BlockUIModule } from 'primeng/blockui';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [],
@@ -27,6 +28,7 @@ import { TableModule } from 'primeng/table';
     CalendarModule,
     ProgressSpinnerModule,
     TableModule,
+    ChartModule,
     ToastModule,
   ],
   exports: [
@@ -41,6 +43,7 @@ import { TableModule } from 'primeng/table';
     CalendarModule,
     ProgressSpinnerModule,
     TableModule,
+    ChartModule,
     ToastModule,
   ],
 })

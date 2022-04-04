@@ -28,6 +28,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'graficos',
+    loadChildren: () =>
+      import('./graficos/graficos.module').then((m) => m.GraficosModule),
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginModule),

@@ -10,8 +10,6 @@ export class UsuarioComponent implements OnInit {
   constructor(private service: UsuarioService) {}
 
   ngOnInit(): void {
-    this.service.buscarUsuarios().subscribe((resposta) => {
-      console.log(resposta);
-    });
+    this.service.buscarUsuarios().subscribe((resposta) => {});
   }
 }
